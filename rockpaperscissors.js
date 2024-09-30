@@ -111,7 +111,22 @@ function roundResult(humanHasWon) {
     console.log("Your Score: " + humanScore + " Computer Score: " + computerScore);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    humanScore = 0;
+    computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        console.log("Round " + (i + 1));
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 
-playRound(humanSelection, computerSelection);
+    if (humanScore == computerScore) {
+        console.log("The game ends in a draw");
+    } else if (humanScore > computerScore) {
+        console.log("You win the game");
+    } else {
+        console.log("You lose the game");
+    }
+}
+
+playGame();
+
