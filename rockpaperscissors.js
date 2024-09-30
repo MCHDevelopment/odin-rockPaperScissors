@@ -1,5 +1,6 @@
 
-//checkInput(userInput());
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let computerChoice = "";
@@ -23,20 +24,18 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-console.log("The computers choice: " + getComputerChoice());
-
-userInput();
-
-function userInput() {
+function getHumanChoice() {
     let playerInput = prompt("Please select (R)ock, (P)aper or (S)cissors: ");
     let playerChoice = validateInput(playerInput);   //second variable to keep the original input for the alert
     if (playerChoice != "invalid") {
-        console.log("The players choice: " + playerChoice);
+        //console.log("The players choice: " + playerChoice);
     }
     else {
         alert(playerInput + " is not a valid Value, please choose either Rock, Paper or Scissors")
-        playerChoice = userInput();
+        playerChoice = getHumanChoice();
     }
+
+    return playerChoice;
 }
 
 function validateInput(originalInput) {
@@ -48,7 +47,7 @@ function validateInput(originalInput) {
         console.log("The input is null");
     } else {
         let firstChar = originalInput[0].toUpperCase();
-        switch(firstChar){
+        switch (firstChar) {
             case "R":
                 validatedInput = "Rock";
                 break;
@@ -63,3 +62,56 @@ function validateInput(originalInput) {
 
     return validatedInput;
 }
+
+function playRound(humanChoice, computerChoice) {
+    console.log("Your choice: " + humanChoice + " Computer choice: " + computerChoice);
+
+    if (humanChoice === computerChoice) {
+        console.log("Draw");
+    } else {
+        switch (humanChoice) {
+            case "Rock":
+                if (computerChoice === "Paper") {
+                    roundResult(false);
+                }
+                else {
+                    roundResult(true);
+                }
+                break;
+            case "Paper":
+                if (computerChoice === "Scissors") {
+                    roundResult(false);
+                }
+                else {
+                    roundResult(true);
+                }
+                break;
+            case "Scissors":
+                if (computerChoice === "Rock") {
+                    roundResult(false);
+                }
+                else {
+                    roundResult(true);
+                }
+                break;
+        }
+    }
+}
+
+function roundResult(humanHasWon) {
+    if (humanHasWon) {
+        console.log("You win!");
+        humanScore++;
+    }
+    else {
+        console.log("You lose");
+        computerScore++;
+    }
+
+    console.log("Your Score: " + humanScore + " Computer Score: " + computerScore);
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
