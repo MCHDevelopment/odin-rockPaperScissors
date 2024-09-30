@@ -24,10 +24,22 @@ function getRandomInt(max) {
 
 console.log("The computers choice: " + getComputerChoice());
 
+userInput();
+
 function userInput() {
-    let playerChoice = parseInt(prompt("Please select (R)ock, (P)aper or (S)cissors: "));
+    let playerInput = prompt("Please select (R)ock, (P)aper or (S)cissors: ");
+    let playerChoice = checkInput(playerInput);   //second variable to keep the original input for the alert
+    if(playerChoice != "invalid")
+    {
+        console.log("The players choice: " + playerChoice);
+    }
+    else
+    {
+        alert(playerInput + " is not a valid Value, please choose either Rock, Paper or Scissors")
+        playerChoice = userInput();
+    }
 }
 
-function checkInput(){
-
+function checkInput(playerInput){
+    return playerInput;
 }
