@@ -5,17 +5,18 @@ function getComputerChoice() {
     let computerChoice = "";
     switch (getRandomInt(3)) {
         case 0:
-            computerChoice = "Rock";
+            computerChoice = "R";
             break;
         case 1:
-            computerChoice = "Paper";
+            computerChoice = "P";
             break;
         case 2:
-            computerChoice = "Scissors";
+            computerChoice = "S";
             break;
     }
 
-    return computerChoice;
+    //This way both the player and the computer will always use the same choices
+    return validateInput(computerChoice);
 }
 
 function getRandomInt(max) {
@@ -28,7 +29,7 @@ userInput();
 
 function userInput() {
     let playerInput = prompt("Please select (R)ock, (P)aper or (S)cissors: ");
-    let playerChoice = checkInput(playerInput);   //second variable to keep the original input for the alert
+    let playerChoice = validateInput(playerInput);   //second variable to keep the original input for the alert
     if (playerChoice != "invalid") {
         console.log("The players choice: " + playerChoice);
     }
@@ -38,7 +39,7 @@ function userInput() {
     }
 }
 
-function checkInput(originalInput) {
+function validateInput(originalInput) {
     let validatedInput = "invalid";
 
     if (typeof originalInput === "string" && originalInput.length === 0) {
