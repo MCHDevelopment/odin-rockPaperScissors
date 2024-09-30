@@ -129,4 +129,3 @@ function playGame() {
 }
 
 playGame();
-
